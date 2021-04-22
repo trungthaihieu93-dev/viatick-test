@@ -14,7 +14,9 @@
           "HOCs": "./HOCs",
           "hooks": "./hooks",
           "navigation": "./navigation",
-          "screens": "./screens"
+          "screens": "./screens",
+          "utils": "./utils",
+          "services": "./services"
         }
       }
     ]
