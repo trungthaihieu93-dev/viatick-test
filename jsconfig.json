@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "jsx": "react-native",
+    "module": "commonJS",
+    "paths": {
+      "apollo/*": ["./apollo/*"],
+      "assets/*": ["./assets/*"],
+      "components/*": ["./components/*"],
+      "constants/*": ["./constants/*"],
+      "HOCs/*": ["./HOCs/*"],
+      "hooks/*": ["./hooks/*"],
+      "navigation/*": ["./navigation/*"],
+      "screens/*": ["./screens/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "docs"
+  ]
+}
