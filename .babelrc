@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "apollo": "./apollo",
+          "assets": "./assets",
+          "components": "./components",
+          "constants": "./constants",
+          "HOCs": "./HOCs",
+          "hooks": "./hooks",
+          "navigation": "./navigation",
+          "screens": "./screens"
+        }
+      }
+    ]
+  ]
+}
