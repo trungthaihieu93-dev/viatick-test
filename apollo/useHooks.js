@@ -1,12 +1,12 @@
 import { useQuery, useMutation } from '@apollo/client';
 
 import {
-  getTestQuery,
+  getSensorsWithIoTQuery,
 } from './queries';
 
 // queries
-export const useTestQuery = () => {
-  const { loading, error, data } = useQuery(getTestQuery());
+export const useSensorsWithIotQuery = () => {
+  const { loading, error, data } = useQuery(getSensorsWithIoTQuery());
 
   return {
     loading,

@@ -1,0 +1,36 @@
+// Sensors
+
+export const SENSOR_DEVICE_ID = 'deviceId';
+export const SENSOR_DEVICE_APPLICATION = 'application';
+export const SENSOR_DEVICE_NAME = 'name';
+export const SENSOR_DEVICE_MODEL = 'model';
+export const SENSOR_DEVICE_SERIAL = 'serial';
+export const SENSOR_DEVICE_MAC = 'mac';
+export const SENSOR_DEVICE_REGION = 'region';
+export const SENSOR_DEVICE_LONGITUDE = 'longitude';
+export const SENSOR_DEVICE_LATITUDE = 'latitude';
+export const SENSOR_DEVICE_FLOOR = 'floor';
+export const SENSOR_DEVICE_DISTANCE = 'distance';
+export const SENSOR_DEVICE_REMARK = 'remark';
+export const SENSOR_DEVICE_OPTIONAL = 'optional';
+export const SENSOR_DEVICE_ACTIVE = 'active';
+export const SENSOR_DEVICE_DATE = 'date';
+export const SENSOR_DEVICE_LIVE = 'live';
+export const SENSOR_DEVICE_BATTERY = 'battery';
+export const SENSOR_DEVICE_HUMIDITY = 'humidity';
+export const SENSOR_DEVICE_TEMPERATURE = 'temperature';
+export const SENSOR_DEVICE_HEIGHT = 'height';
+export const SENSOR_DEVICE_MAX_HEIGHT = 'maxHeight';
+export const SENSOR_DEVICE_X = 'x';
+export const SENSOR_DEVICE_Y = 'y';
+export const SENSOR_DEVICE_Z = 'z';
+export const SENSOR_DEVICE_TAGS = 'tags';
+export const SENSOR_DEVICE_DEPLOYMENT_DATE = 'deploymentDate';
+export const SENSOR_DEVICE_COMPOSITION_DATA = 'compositionData';
+export const SENSOR_DEVICE_UNICAST_ADDR = 'unicastAddr';
+export const SENSOR_DEVICE_MESH_STATUS = 'meshStatus';
+export const SENSOR_DEVICE_ERROR = 'error';
+export const SENSOR_DEVICE_LOCK_STATUS = 'status';
+export const SENSOR_DEVICE_NETWORK = 'network';
+export const SENSOR_DEVICE_FREQUENCY = 'frequency';
+export const SENSOR_DEVICE_SERVER = 'server';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
+import Toast from 'react-native-toast-message';
 
 import useResources from 'hooks/useResources';
 import Main from 'navigation';
@@ -17,6 +18,7 @@ export default function App() {
     ? (
       <ApolloProvider client={client}>
         <Main />
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </ApolloProvider>
     )
     : <Loading />;
