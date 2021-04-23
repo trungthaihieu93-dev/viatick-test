@@ -38,7 +38,9 @@ const useApolloClient = () => {
       // eslint-disable-next-line consistent-return
       graphQLErrors.forEach((err) => {
         // token expire, refresh
-        if (err.errorType === 'UnauthorizedException') {
+        if (
+          err.errorType === 'UnauthorizedException'
+          || err.message === 'Token is expired') {
           return fromPromise(
             getAccessToken().catch((tokenErr) => {
               console.log(tokenErr);

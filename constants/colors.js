@@ -1,0 +1,1 @@
+export const tintColor = '#694fad';

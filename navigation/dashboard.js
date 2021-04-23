@@ -7,6 +7,8 @@ import {
 } from 'constants/screens';
 import Icon from 'components/Icon';
 
+import { tintColor } from 'constants/colors';
+
 import SensorStack from './sensors';
 import ProfileStack from './profile';
 
@@ -18,7 +20,7 @@ export default function Dashboard() {
       initialRouteName="Home"
       activeColor="#f0edf6"
       inactiveColor="#3e2465"
-      barStyle={{ backgroundColor: '#694fad' }}
+      barStyle={{ backgroundColor: tintColor }}
     >
       <MaterialBottomTab.Screen
         name={SENSOR_STACK}
