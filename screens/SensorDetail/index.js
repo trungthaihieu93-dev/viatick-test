@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View } from 'react-native';
 import {
   Button,
@@ -7,18 +7,30 @@ import {
 } from 'react-native-paper';
 
 import {
+  SENSOR_DEVICE_ID,
   SENSOR_DEVICE_NAME,
   SENSOR_DEVICE_REGION,
 } from 'constants/fields';
 import Icon from 'components/Icon';
+import { useUpdateDeviceMutation } from 'apollo/useHooks';
 
 import styles from './styles';
+
+const restrictedIDs = [
+  101502, 101503
+];
 
 export default function SensorDetail({ navigation, route }) {
   const { sensor } = route.params || {};
 
   const [name, setName] = useState(sensor[SENSOR_DEVICE_NAME]);
   const [region, setRegion] = useState(sensor[SENSOR_DEVICE_REGION]);
+
+  // const [updateDevice, {
+  //   data: updatedData,
+  //   error,
+  //   loading,
+  // }] = useUpdateDeviceMutation();
 
   return (
     <View style={styles.container}>
@@ -32,7 +44,7 @@ export default function SensorDetail({ navigation, route }) {
         mode="outlined"
         label="Name"
         value={name}
-        onChangeText={name => setName(name)}
+        onChangeText={(nameText) => setName(nameText)}
       />
 
       <TextInput
@@ -40,13 +52,21 @@ export default function SensorDetail({ navigation, route }) {
         mode="outlined"
         label="Region"
         value={region}
-        onChangeText={region => setText(region)}
+        onChangeText={(regionText) => setRegion(regionText)}
       />
 
       <View style={styles.buttons}>
         <Button
           style={styles.updateButton}
           labelStyle={{ color: 'white' }}
+          // onPress={() => updateDevice({
+          //   variables: {
+          //     id: sensor[SENSOR_DEVICE_ID],
+          //     name: sensor[SENSOR_DEVICE_NAME],
+          //     region: sensor[SENSOR_DEVICE_REGION]
+          //   },
+          // }
+          // )}
         >
           Update
         </Button>
