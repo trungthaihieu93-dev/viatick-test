@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import {
   Button,
@@ -13,6 +13,7 @@ import {
 } from 'constants/fields';
 import Icon from 'components/Icon';
 import { useUpdateDeviceMutation } from 'apollo/useHooks';
+import { useApolloErrorHandler } from 'hooks/useErrorHandler';
 
 import styles from './styles';
 
@@ -26,11 +27,20 @@ export default function SensorDetail({ navigation, route }) {
   const [name, setName] = useState(sensor[SENSOR_DEVICE_NAME]);
   const [region, setRegion] = useState(sensor[SENSOR_DEVICE_REGION]);
 
-  // const [updateDevice, {
-  //   data: updatedData,
-  //   error,
-  //   loading,
-  // }] = useUpdateDeviceMutation();
+  const {
+    data,
+    error,
+    loading,
+    updateDevice,
+  } = useUpdateDeviceMutation();
+
+  useEffect(() => {
+    if (data) {
+      navigation.goBack();
+    }
+  }, [data]);
+
+  useApolloErrorHandler(error);
 
   return (
     <View style={styles.container}>
@@ -59,14 +69,15 @@ export default function SensorDetail({ navigation, route }) {
         <Button
           style={styles.updateButton}
           labelStyle={{ color: 'white' }}
-          // onPress={() => updateDevice({
-          //   variables: {
-          //     id: sensor[SENSOR_DEVICE_ID],
-          //     name: sensor[SENSOR_DEVICE_NAME],
-          //     region: sensor[SENSOR_DEVICE_REGION]
-          //   },
-          // }
-          // )}
+          loading={loading}
+          onPress={() => updateDevice({
+            variables: {
+              id: sensor[SENSOR_DEVICE_ID],
+              name: sensor[SENSOR_DEVICE_NAME],
+              region: sensor[SENSOR_DEVICE_REGION]
+            },
+          }
+          )}
         >
           Update
         </Button>

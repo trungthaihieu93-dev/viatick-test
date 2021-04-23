@@ -20,10 +20,23 @@ export const useSensorsWithIotQuery = () => {
 };
 
 // mutations
+// device mutatations
 export const useUpdateDeviceMutation = () => {
-  const { loading, error, data } = useMutation(getUpdateDeviceMutation());
+  const [updateDevice, { loading, error, data }] = useMutation(getUpdateDeviceMutation());
 
   return {
+    updateDevice,
+    loading,
+    error,
+    data,
+  };
+};
+
+export const useDeleteDevicesMutation = () => {
+  const [deleteDevice, { loading, error, data }] = useMutation(getDeleteDevicesMutation());
+
+  return {
+    deleteDevice,
     loading,
     error,
     data,
