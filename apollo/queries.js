@@ -13,7 +13,7 @@ import {
 
 import {
   GET_SENSORS_WITH_IOT
-} from './contants';
+} from './constants';
 
 export const getSensorsWithIoTQuery = () => gql`
   query {

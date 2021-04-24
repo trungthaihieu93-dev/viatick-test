@@ -10,7 +10,7 @@ import {
   UPDATE_DEVICE,
   UPDATE_DEVICE_INPUT,
   DELETE_DEVICES,
-} from './contants';
+} from './constants';
 
 // Devices Mutation
 export const getUpdateDeviceMutation = () => gql`

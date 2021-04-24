@@ -12,7 +12,7 @@ import {
   SENSOR_DEVICE_REGION,
 } from 'constants/fields';
 import Icon from 'components/Icon';
-import { useUpdateDeviceMutation } from 'apollo/useHooks';
+import { useUpdateDeviceMutation } from 'apollo/hooks';
 import { useApolloErrorHandler } from 'hooks/useErrorHandler';
 
 import styles from './styles';

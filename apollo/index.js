@@ -40,7 +40,8 @@ const useApolloClient = () => {
         // token expire, refresh
         if (
           err.errorType === 'UnauthorizedException'
-          || err.message === 'Token is expired') {
+          || err.message === 'Token is expired'
+          || err.message.includes('TypeError: Cannot read property')) {
           return fromPromise(
             getAccessToken().catch((tokenErr) => {
               console.log(tokenErr);

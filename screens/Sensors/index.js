@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import {
   useSensorsWithIotQuery,
-} from 'apollo/useHooks';
+} from 'apollo/hooks';
 import {
-  GET_SENSORS_WITH_IOT
-} from 'apollo/contants';
+  GET_SENSORS_WITH_IOT,
+} from 'apollo/constants';
 import {
   SENSOR_DEVICE_ID,
 } from 'constants/fields';
