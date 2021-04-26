@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 import {
   Button,
   Title,
   TextInput,
 } from 'react-native-paper';
+import Toast from 'react-native-toast-message';
 
 import {
   SENSOR_DEVICE_ID,
@@ -12,7 +13,7 @@ import {
   SENSOR_DEVICE_REGION,
 } from 'constants/fields';
 import Icon from 'components/Icon';
-import { useUpdateDeviceMutation } from 'apollo/hooks';
+import { useDeleteDevicesMutation, useUpdateDeviceMutation } from 'apollo/hooks';
 import { useApolloErrorHandler } from 'hooks/useErrorHandler';
 
 import styles from './styles';
@@ -28,19 +29,70 @@ export default function SensorDetail({ navigation, route }) {
   const [region, setRegion] = useState(sensor[SENSOR_DEVICE_REGION]);
 
   const {
-    data,
-    error,
-    loading,
+    data: updatedData,
+    error: updateError,
+    loading: updateLoading,
     updateDevice,
   } = useUpdateDeviceMutation();
 
-  useEffect(() => {
-    if (data) {
-      navigation.goBack();
-    }
-  }, [data]);
+  const {
+    data: deleteData,
+    error: deleteError,
+    loading: deleteLoading,
+    deleteDevice,
+  } = useDeleteDevicesMutation();
 
-  useApolloErrorHandler(error);
+  useEffect(() => {
+    if (updatedData) {
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        text1: 'Updated device successfully!',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+      });
+    }
+
+    if (deleteData) {
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        text1: 'Delete device successfully!',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+      });
+    }
+
+    navigation.goBack();
+  }, [updatedData, deleteData]);
+
+  useApolloErrorHandler(updateError);
+
+  useApolloErrorHandler(deleteError);
+
+  const handleDelete = useCallback((id) => {
+    if (restrictedIDs.includes(id)) {
+      Toast.show({
+        type: 'error',
+        position: 'bottom',
+        text1: 'This device cannnot be deleted!',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+      });
+    } else {
+      deleteDevice({
+        variables: {
+          devices: [id]
+        },
+      });
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -69,12 +121,14 @@ export default function SensorDetail({ navigation, route }) {
         <Button
           style={styles.updateButton}
           labelStyle={{ color: 'white' }}
-          loading={loading}
+          loading={updateLoading}
           onPress={() => updateDevice({
             variables: {
-              id: sensor[SENSOR_DEVICE_ID],
-              name: sensor[SENSOR_DEVICE_NAME],
-              region: sensor[SENSOR_DEVICE_REGION]
+              input: {
+                [SENSOR_DEVICE_ID]: sensor[SENSOR_DEVICE_ID],
+                [SENSOR_DEVICE_NAME]: name,
+                [SENSOR_DEVICE_REGION]: region
+              }
             },
           }
           )}
@@ -84,6 +138,8 @@ export default function SensorDetail({ navigation, route }) {
         <Button
           style={styles.deleteButton}
           labelStyle={{ color: 'white' }}
+          loading={deleteLoading}
+          onPress={() => handleDelete(sensor[SENSOR_DEVICE_ID])}
         >
           Delete
         </Button>

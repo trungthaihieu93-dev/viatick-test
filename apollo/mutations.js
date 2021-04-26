@@ -14,15 +14,9 @@ import {
 
 // Devices Mutation
 export const getUpdateDeviceMutation = () => gql`
-  mutation ${UPDATE_DEVICE_INPUT} (
-    $id: Int!
-    $name: String!
-    $region: String!
-  ) {
+  mutation ($input: ${UPDATE_DEVICE_INPUT}) {
     ${UPDATE_DEVICE} (
-      ${SENSOR_DEVICE_ID}: $id,
-      ${SENSOR_DEVICE_NAME}: $name,
-      ${SENSOR_DEVICE_REGION}: $region
+      input: $input
     ) {
       ${SENSOR_DEVICE_ID}
       ${SENSOR_DEVICE_NAME}
@@ -32,7 +26,11 @@ export const getUpdateDeviceMutation = () => gql`
 `;
 
 export const getDeleteDevicesMutation = () => gql`
-  mutation ${DELETE_DEVICES} (
-    deviceIds: [$ids]
-  )
+  mutation ($devices: [Int]){
+    ${DELETE_DEVICES} (
+      deviceIds: $devices
+    ) {
+      rows_deleted
+    }
+  }
 `;

@@ -22,7 +22,11 @@ export const useSensorsWithIotQuery = () => {
 // mutations
 // device mutatations
 export const useUpdateDeviceMutation = () => {
-  const [updateDevice, { loading, error, data }] = useMutation(getUpdateDeviceMutation());
+  const [updateDevice, { loading, error, data }] = useMutation(getUpdateDeviceMutation(), {
+    refetchQueries: [{
+      query: getSensorsWithIoTQuery(),
+    }]
+  });
 
   return {
     updateDevice,
@@ -33,7 +37,11 @@ export const useUpdateDeviceMutation = () => {
 };
 
 export const useDeleteDevicesMutation = () => {
-  const [deleteDevice, { loading, error, data }] = useMutation(getDeleteDevicesMutation());
+  const [deleteDevice, { loading, error, data }] = useMutation(getDeleteDevicesMutation(), {
+    refetchQueries: [{
+      query: getSensorsWithIoTQuery(),
+    }]
+  });
 
   return {
     deleteDevice,
